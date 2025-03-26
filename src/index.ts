@@ -11,10 +11,19 @@ app.get('/hello', (c) => {
   return c.text('Hello')
 })
 
-app.get('/blog/:id', (c) => {
+const blog = new Hono().basePath('/blog')
+
+blog.get('/', (c) => {
+  const id = c.req.param('id')
+  return c.text('Blog List')
+})
+
+blog.get('/:id', (c) => {
   const id = c.req.param('id')
   return c.text(`Blog ${id}`)
 })
+
+app.route('/', blog)
 
 serve(
   {
