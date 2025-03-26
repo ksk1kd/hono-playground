@@ -11,6 +11,11 @@ app.get('/hello', (c) => {
   return c.text('Hello')
 })
 
+app.get('/blog/:id', (c) => {
+  const id = c.req.param('id')
+  return c.text(`Blog ${id}`)
+})
+
 serve(
   {
     fetch: app.fetch,
