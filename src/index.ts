@@ -11,6 +11,10 @@ app.get('/hello', (c) => {
   return c.text('Hello')
 })
 
+app.get('/redirect', (c) => {
+  return c.redirect('/')
+})
+
 const blog = new Hono().basePath('/blog')
 
 blog.get('/', (c) => {
