@@ -15,12 +15,12 @@ const blog = new Hono().basePath('/blog')
 
 blog.get('/', (c) => {
   const id = c.req.param('id')
-  return c.text('Blog List')
+  return c.json([{ title: 'Blog 1' }, { title: 'Blog 2' }, { title: 'Blog 3' }])
 })
 
 blog.get('/:id', (c) => {
   const id = c.req.param('id')
-  return c.text(`Blog ${id}`)
+  return c.json({ title: `Blog ${id}` })
 })
 
 app.route('/', blog)
