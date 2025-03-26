@@ -2,13 +2,16 @@
   "name": "hono-playground",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/index.ts"
+    "dev": "tsx watch src/index.ts",
+    "check": "biome check",
+    "fix": "biome check --write"
   },
   "dependencies": {
     "@hono/node-server": "^1.14.0",
     "hono": "^4.7.5"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "@types/node": "^20.11.17",
     "tsx": "^4.7.1"
   }
