@@ -1,5 +1,6 @@
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
+import blog from './features/blog.ts'
 
 const app = new Hono()
 
@@ -13,18 +14,6 @@ app.get('/hello', (c) => {
 
 app.get('/redirect', (c) => {
   return c.redirect('/')
-})
-
-const blog = new Hono().basePath('/blog')
-
-blog.get('/', (c) => {
-  const id = c.req.param('id')
-  return c.json([{ title: 'Blog 1' }, { title: 'Blog 2' }, { title: 'Blog 3' }])
-})
-
-blog.get('/:id', (c) => {
-  const id = c.req.param('id')
-  return c.json({ title: `Blog ${id}` })
 })
 
 app.route('/', blog)
