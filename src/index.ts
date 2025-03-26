@@ -7,6 +7,10 @@ app.get('/', (c) => {
   return c.text('Hello Hono!')
 })
 
+app.get('/hello', (c) => {
+  return c.text('Hello')
+})
+
 serve(
   {
     fetch: app.fetch,
