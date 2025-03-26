@@ -1,5 +1,6 @@
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
+import { HTTPException } from 'hono/http-exception'
 import blog from './features/blog.ts'
 
 const app = new Hono()
@@ -14,6 +15,10 @@ app.get('/hello', (c) => {
 
 app.get('/redirect', (c) => {
   return c.redirect('/')
+})
+
+app.get('/403', (c) => {
+  throw new HTTPException(403, { message: 'Permission Denied' })
 })
 
 app.route('/', blog)
