@@ -1,6 +1,7 @@
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
 import { basicAuth } from 'hono/basic-auth'
+import { html } from 'hono/html'
 import { HTTPException } from 'hono/http-exception'
 import auth from './features/auth.ts'
 import blog from './features/blog.ts'
@@ -21,6 +22,13 @@ app.get('/', (c) => {
 
 app.get('/hello', (c) => {
   return c.text('Hello')
+})
+
+app.get('/html', (c) => {
+  return c.html(
+    html`<!doctype html>
+      <h1>HTML Sample</h1>`,
+  )
 })
 
 app.get('/redirect', (c) => {
