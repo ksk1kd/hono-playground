@@ -1,9 +1,19 @@
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
+import { basicAuth } from 'hono/basic-auth'
 import { HTTPException } from 'hono/http-exception'
+import auth from './features/auth.ts'
 import blog from './features/blog.ts'
 
 const app = new Hono()
+
+app.use(
+  '/auth/*',
+  basicAuth({
+    username: 'hono',
+    password: 'password',
+  }),
+)
 
 app.get('/', (c) => {
   return c.text('Hello Hono!')
@@ -22,6 +32,7 @@ app.get('/403', (c) => {
 })
 
 app.route('/', blog)
+app.route('/', auth)
 
 serve(
   {
