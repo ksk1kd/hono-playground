@@ -3,10 +3,13 @@ import { Hono } from 'hono'
 import { basicAuth } from 'hono/basic-auth'
 import { html } from 'hono/html'
 import { HTTPException } from 'hono/http-exception'
+import { logger } from 'hono/logger'
 import auth from './features/auth.ts'
 import blog from './features/blog.ts'
 
 const app = new Hono()
+
+app.use(logger())
 
 app.use(
   '/auth/*',
